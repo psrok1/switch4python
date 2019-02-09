@@ -1,4 +1,4 @@
-__all__ = ['switch', 'case', 'default', 'fallthrough']
+__all__ = ['switch']
 
 
 from contextlib import contextmanager
