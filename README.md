@@ -1,18 +1,16 @@
 A switch "statement" for Python. Please don't actually use this.
 
-    x = 5
+    x = 4
 
-    with switch(x) as s:
-        if s.case(4):
-            assert False
+    for s in switch(4):
         if s.case(5):
             assert True
-            s.fallthrough()
-        if s.case(lambda x: x > 3):
-            assert True
+            break
+        if s.case(4):
+            s.goto_case(5)
         if s.case(6):
             assert False
-        if s.default():
-            assert False
+    else: # default
+        assert False
 
 Tests and usage in test.py.

@@ -1,16 +1,13 @@
 __all__ = ['switch']
 
 
-from contextlib import contextmanager
-
-
 class Switch:
     def __init__(self, value):
-        self.value    = value
-        self.finished = False
+        self.value = value
+        self.goto = False
 
     def case(self, cond):
-        if self.finished:
+        if self.goto:
             return False
 
         match = False
@@ -21,18 +18,18 @@ class Switch:
         elif cond == self.value:
             match = True
 
-        if match:
-            self.finished = True
-
         return match
 
-    def fallthrough(self):
-        self.finished = False
+    def goto_case(self, value):
+        self.goto = True
+        self.value = value
 
-    def default(self):
-        return not self.finished
 
-@contextmanager
 def switch(value):
-    the_switch = Switch(value)
-    yield the_switch
+    while True:
+        the_switch = Switch(value)
+        yield the_switch
+        if the_switch.goto:
+            value = the_switch.value
+        else:
+            break
