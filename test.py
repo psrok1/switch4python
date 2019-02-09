@@ -7,7 +7,7 @@ with switch(x) as s:
         assert False
     if s.case(5):
         assert True
-        fallthrough()
+        s.fallthrough()
     if s.case(5):
         assert True
     if s.case(5):

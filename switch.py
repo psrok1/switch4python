@@ -35,7 +35,4 @@ class Switch:
 @contextmanager
 def switch(value):
     the_switch = Switch(value)
-    try:
-        yield the_switch
-    finally:
-        return
+    yield the_switch

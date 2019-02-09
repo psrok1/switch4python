@@ -7,7 +7,7 @@ A switch "statement" for Python. Please don't actually use this.
             assert False
         if s.case(5):
             assert True
-            fallthrough()
+            s.fallthrough()
         if s.case(lambda x: x > 3):
             assert True
         if s.case(6):
