@@ -1,30 +1,23 @@
-from switch import *
+from switch import switch
 
 x = 5
 
-switch(x)
-
-if case(4):
-    assert False
-
-if case(5):
-    assert True
-    fallthrough()
-
-if case(5):
-    assert True
-
-if case(5):
-    assert False
-
-if case(6):
-    assert False
+with switch(x) as s:
+    if s.case(4):
+        assert False
+    if s.case(5):
+        assert True
+        fallthrough()
+    if s.case(5):
+        assert True
+    if s.case(5):
+        assert False
+    if s.case(6):
+        assert False
 
 
-switch(3)
-
-if case(lambda x: x > 5):
-    assert False
-
-if default():
-    assert True
+with switch(3) as s:
+    if s.case(lambda x: x > 5):
+        assert False
+    if s.default():
+        assert True

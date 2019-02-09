@@ -1,5 +1,9 @@
 __all__ = ['switch', 'case', 'default', 'fallthrough']
 
+
+from contextlib import contextmanager
+
+
 class Switch:
     def __init__(self, value):
         self.value    = value
@@ -28,17 +32,10 @@ class Switch:
     def default(self):
         return not self.finished
 
-the_switch = None
-
+@contextmanager
 def switch(value):
-    global the_switch
     the_switch = Switch(value)
-
-def case(cond):
-    return the_switch.case(cond)
-
-def fallthrough():
-    the_switch.fallthrough()
-
-def default():
-    the_switch.default()
+    try:
+        yield the_switch
+    finally:
+        return
